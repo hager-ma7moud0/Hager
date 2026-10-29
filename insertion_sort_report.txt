@@ -1,0 +1,74 @@
+==============================================================
+Empirical Analysis & Performance Report: Insertion Sort
+==============================================================
+
+
+1. Executive Summary (ملخص تنفيذ المشروع)
+--------------------------------------------------------------
+This project investigates the empirical performance of Insertion
+Sort across three distinct input distributions:
+
+  - Sorted          : O(n)
+  - Reverse-Sorted  : O(n^2)
+  - Random          : O(n^2)
+
+for input sizes n ranging from 100 to 5,000. By tracking the
+underlying primitive operations (comparisons and memory shifts),
+the empirical results strongly validate the theoretical
+asymptotic models.
+
+
+2. Empirical Findings & Analysis (النتائج والتحليل العملي)
+--------------------------------------------------------------
+Best Case (Sorted Inputs):
+  - Running time grows linearly: O(n).
+  - Each element requires exactly 1 comparison and 0 shifts,
+    resulting in minimal CPU overhead.
+
+Worst Case (Reverse-Sorted Inputs):
+  - Running time exhibits strict quadratic growth: O(n^2).
+  - Total shifts scale according to n(n-1)/2, causing a massive
+    surge in execution time and memory-write bottlenecks for
+    larger n (5,000).
+
+Average Case (Random Inputs):
+  - Exhibits quadratic growth: Theta(n^2), as elements move
+    halfway through the sorted sub-array on average, roughly
+    consuming half the operations of the worst case.
+
+
+3. Insertion Sort vs. Merge Sort Comparison (مقارنة مع Merge Sort)
+--------------------------------------------------------------
+
++-------------------+-----------------------------+-----------------------------------+
+| Feature / Metric  | Insertion Sort              | Merge Sort                        |
++-------------------+-----------------------------+-----------------------------------+
+| Best Case Time    | O(n)                        | O(n log n)                        |
+|                   | (Highly efficient on        | (Performs full splits regardless) |
+|                   | sorted data)                |                                   |
++-------------------+-----------------------------+-----------------------------------+
+| Worst Case Time   | O(n^2)                      | O(n log n)                        |
+|                   | (Slow on large random /     | (Consistent across all cases)     |
+|                   | reverse data)               |                                   |
++-------------------+-----------------------------+-----------------------------------+
+| Space Complexity  | O(1)                        | O(n)                              |
+|                   | (In-place sorting)          | (Requires auxiliary arrays)       |
++-------------------+-----------------------------+-----------------------------------+
+| Primary           | Memory shifts and write     | Recursive call stack overhead and |
+| Bottleneck        | operations                  | memory allocation                 |
++-------------------+-----------------------------+-----------------------------------+
+| Ideal Use Case    | Small datasets (n <= 20) or | Large datasets requiring          |
+|                   | nearly sorted data          | guaranteed O(n log n) performance |
++-------------------+-----------------------------+-----------------------------------+
+
+
+4. Conclusion (الخاتمة النهائية)
+--------------------------------------------------------------
+Insertion Sort is highly practical and outperforms sophisticated
+algorithms on small datasets or nearly sorted data streams due to
+its minimal O(1) auxiliary space and low constant factors.
+
+However, for large, unstructured datasets, its quadratic time
+complexity O(n^2) makes it impractical, cementing the superiority
+of divide-and-conquer algorithms like Merge Sort for large-scale
+sorting.
